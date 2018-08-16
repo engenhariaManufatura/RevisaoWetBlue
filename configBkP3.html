@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<title>
+</title>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:;base64,=">
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous">
+    </script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pouchdb/7.0.0/pouchdb.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+       crossorigin="anonymous">	
+    <script type="text/javascript" src="scripts.js"></script>
+    <style >
+    body{
+      background:#E8EDF0;
+      backgroundS:#F0F0F0;
+    }
+	input{
+	
+	}
+    .line-separator{
+        height:1px;
+        background:#717171;
+        border-bottom:1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+	<div class="container">
+		<div class="row">
+			<label for='idC' > Configuração: </label>
+			<div class='col-sm'>
+			<input id='idC' class='input-group' type='text' placeholder ='Configuração'>
+			<div class='dropdown col-sm' >
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="container"> 
+		<div class="row">
+			<label for='unidade'> Unidade: </label>
+			<input id='unidade' type='text' placeholder='Ex: UMG'>
+			<input type='button' class= 'btn btn-primary' value='Salvar'   onclick = 'SaveInDb()'>
+			<input type='button' class= 'btn btn-danger' value='Deletar' onclick= 'deleteId()'>
+			<label id='saveLabel'></label>
+		</div>
+	</div>
+    <!-- </div> -->
+
+    <div class='line-separator'> </div>
+  <!-- Butoes de classe -->
+  <div class="container">
+    <div class="row" >
+      <div id="saveLayout" class= "col-xs-4">
+      	<input type='button' class= 'btn btn-primary' value='Adicionar coluna'  onclick = 'CreateEmptyColumn()'>
+     	<input type='button' class= 'btn btn-danger' value='Remover colunas' onclick = 'Clean()'>
+      </div>
+      <div class="btn-group  col-xs-12">
+      	    <div class='line-separator'> </div>
+    		<p> CONFIGURAÇÃO DE CLASSE </p>
+        <div id="classes"> 
+		</div>
+	   </div>
+	</div>
+   </div>
+	<script>
+	$(document).ready(function (){
+		console.log("Document loaded");
+		listDb();
+		//createDropDown();
+		$(".dropdown-toggle").dropdown();
+	});
+	
+	  var db =  new PouchDB('test1');
+      var remoteCouch = false;
+      db.info().then(function (info) {
+        console.log(info);
+      })
+
+		</script> 
+	
+    </body>
+  </html>
